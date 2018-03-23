@@ -1,5 +1,9 @@
+#!/usr/bin/env python
+
 import os
+import sys
 import json
+import settings
 
 def import_changes(location, path):
     p = path
@@ -47,3 +51,7 @@ def import_changes(location, path):
                 continue
             os.symlink(os.path.join("..", "..", *reversed(l)),
                        os.path.join(objs, a, u[:2], u[2:]))
+
+if __name__ == "__main__":
+    for path in sys.argv[1:]:
+        import_changes(settings.DATA_REPO, path)
