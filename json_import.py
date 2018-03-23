@@ -42,6 +42,9 @@ def import_changes(location, path):
                    obj[k][f] += x
                    obj[k][f].sort()
             del obj[k]["_add"]
+        for f, x in obj[k].items():
+            if x is None:
+                del obj[k][f]
     with open(dest, "w") as f:
         json.dump(obj, f, indent = 4, sort_keys = True)
     if not exists:
